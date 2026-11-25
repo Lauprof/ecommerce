@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Login{% endblock %}
+
+{% block page_styles %}
+<style>
+    body.login-page {
+    background: linear-gradient(180deg, #e2f5f2 0%, #fff 100%);
+    }
+
+    .login-card {
+        width: 100%;
+        max-width: 520px;
+    }
+</style>
+{% endblock %}
+
+{% block body_class %}login-page{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid d-flex align-items-center justify-content-center flex-column p-3 fs-4" style="min-height: calc(100vh - 88px);">
+
+    <div class="login-card shadow border rounded bg-white p-4 p-md-5">
+
+    <p class="h4 fw-bold text-center mb-2">Eshop AutoMobile Experts</p>
+    <p class="text-center text-muted mb-4">Login to personalize your car experience</p>
+
+    {% if messages %}
+        {% for message in messages %}
+        <div class="alert {% if message.tags == 'error' %}alert-danger{% else %}alert-{{ message.tags }}{% endif %}" role="alert">
+            {{ message }}
+        </div>
+        {% endfor %}
+    {% endif %}
+
+    <form id="login-form" class="form" method="post">
+        {% csrf_token %}
+
+        <h2 class="h5 text-center fw-bold mb-4">Sign in to continue</h2>
+
+        <label for="email" class="form-label">Email</label>
+        <div class="input-group input-group-lg mb-3">
+            <span class="input-group-text"><i class="bi bi-envelope-at-fill"></i></span>
+           <input type="email" id="email" class="form-control" name="email" value="{{ email|default:'' }}" autocomplete="username" required placeholder="Email">
+       </div>
+
+        <label for="inputPassword5" class="form-label">Password</label>
+       <div class="input-group input-group-lg mb-3">
+        <span class="input-group-text"><i class="bi bi-file-earmark-lock2-fill"></i></span>
+        <input type="password" id="inputPassword5" name="password" class="form-control" autocomplete="current-password" aria-describedby="passwordHelpBlock" placeholder="Password" required>
+    
+    </div>
+
+       <div id="login-progress" class="d-none text-center mb-3" role="status" aria-live="polite">
+            <span class="spinner-border text-secondary" aria-hidden="true"></span>
+            <span class="visually-hidden">Signing you in</span>
+            <p class="small text-muted mt-2 mb-0" aria-hidden="true">Signing you in</p>
+       </div>
+
+       <button class="btn btn-secondary btn-lg container-fluid rounded mb-3" type="submit">Sign in</button>
+
+       <div class="text-center mb-3">
+            <a href="{% url 'reset' %}" class="small text-danger text-decoration-none">
+                <i class="bi bi-key me-1" aria-hidden="true"></i>Forgot password?
+            </a>
+        </div>
+
+
+       
+      
+      
+
+
+
+    </form>
+
+    </div>
+
+</div>
+
+<script>
+    document.getElementById("login-form").addEventListener("submit", function () {
+        document.getElementById("login-progress").classList.remove("d-none");
+        this.setAttribute("aria-busy", "true");
+    });
+</script>
+
+{% endblock %}

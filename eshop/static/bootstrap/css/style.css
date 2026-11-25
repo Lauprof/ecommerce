@@ -1,0 +1,88 @@
+  .ev-intro {
+    background: #f0f7fa;
+  }
+
+  .drive-card {
+    border: 1px solid #d5dde3;
+    border-left-width: 8px;
+    border-radius: 1rem;
+    color: #14212b;
+  }
+
+  .drive-card-electric {
+    background: linear-gradient(180deg, #e2f5f2 0%, #fff 100%);
+    border-left-color: #00a88f;
+  }
+
+  .drive-card-fossil {
+    background: linear-gradient(180deg, #fff4dc 0%, #fff 100%);
+    border-left-color: #d28a00;
+  }
+
+  .drive-card-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+
+  .drive-card-stats dt {
+    font-size: 1.25rem;
+  }
+
+  .drive-card-stats dd {
+    color: #526170;
+    margin-bottom: 0;
+  }
+
+  .ev-card {
+    border-radius: 1rem;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .ev-card:hover,
+  .ev-card:focus-within,
+  .ev-card:active {
+    transform: scale(1.05);
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.18);
+    position: relative;
+    z-index: 1;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ev-card {
+      transition: none;
+    }
+
+    .ev-card:hover,
+    .ev-card:focus-within,
+    .ev-card:active {
+      transform: none;
+    }
+  }
+
+  .ev-image {
+    height: 220px;
+    object-fit: cover;
+  }
+
+  .ev-specs li {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid #e9ecef;
+  }
+
+  .ev-specs li span {
+    text-align: right;
+  }
+
+body{
+    
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  background-color: #f2f4f5;
+  }
+
+    
+  

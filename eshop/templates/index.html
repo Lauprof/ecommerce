@@ -1,0 +1,206 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+<section class="bg-danger-subtle">
+
+<form class="form" method="get" action="{% url 'home' %}" role="search">
+
+<div class="input-group  p-3 ">
+ 
+  <input type="search" name="q" autocomplete="off" class="form-control border-start-0 p-3 " placeholder="Search by car name or details" aria-label="Search vehicles"
+    hx-get="{% url 'home' %}"
+    hx-trigger="input changed delay:300ms"
+    hx-target="#vehicle-results"
+    hx-indicator="#search-loading"
+    hx-swap="innerHTML">
+  <span id="search-loading" class="input-group-text htmx-indicator" role="status" aria-live="polite" aria-atomic="true">
+    <span class="spinner-border spinner-border-sm text-success" aria-hidden="true"></span>
+    <span class="ms-2">Searching...</span>
+  </span>
+  <button type="submit" class="input-group-text bg-white border-end-0" aria-label="Submit search">
+    <i class="bi bi-search text-muted" aria-hidden="true"></i>
+  </button>
+</div>
+</form>
+
+</section>
+
+<section class="container-fluid px-3 px-md-4 py-4">
+  <div class="mb-4">
+    <h1 class="display-5 fw-bold text-dark mb-2">Find the car that fits how you drive.</h1>
+    <p class="lead text-secondary mb-0">Compare electric, petrol, diesel and hybrid cars side by side, then order online.</p>
+  </div>
+
+  <div class="row g-4">
+    <div class="col-12 col-lg-6">
+      <article class="drive-card drive-card-electric h-100 p-4 p-md-5">
+        <h2 class="h3 fw-bold">Electric</h2>
+        <p>Quiet, quick and cheap to run. Charge at home or on the go.</p>
+        <dl class="drive-card-stats mb-0">
+          <div>
+            <dt>5</dt>
+            <dd>cars available</dd>
+          </div>
+          <div>
+            <dt>629 km</dt>
+            <dd>longest range</dd>
+          </div>
+          <div>
+            <dt>KES 1,850,000</dt>
+            <dd>starting price</dd>
+          </div>
+        </dl>
+      </article>
+    </div>
+
+    <div class="col-12 col-lg-6">
+      <article class="drive-card drive-card-fossil h-100 p-4 p-md-5">
+        <h2 class="h3 fw-bold">Fossil</h2>
+        <p>Petrol and diesel cars with long range and quick refuelling.</p>
+        <dl class="drive-card-stats mb-0">
+          <div>
+            <dt>5</dt>
+            <dd>cars available</dd>
+          </div>
+          <div>
+            <dt>3000 cc</dt>
+            <dd>biggest engine</dd>
+          </div>
+          <div>
+            <dt>KES 1,650,000</dt>
+            <dd>starting price</dd>
+          </div>
+        </dl>
+      </article>
+    </div>
+  </div>
+</section>
+
+  <section class="container-fluid p-5">
+    <div id="vehicle-results">
+      {% include "partials/vehicle_results.html" %}
+    </div>
+  </section>
+
+  <section class="container-fluid p-5 bg-primary fw-bold text-white shadow rounded border">
+    <div class="card border-0 shadow-sm text-dark mb-4">
+      <div class="card-body p-4 p-md-5 d-flex flex-column flex-md-row align-items-md-center gap-4">
+        <div class="bg-warning rounded-circle d-flex align-items-center justify-content-center flex-shrink-0" style="width: 72px; height: 72px;">
+          <i class="bi bi-car-front-fill fs-2" aria-hidden="true"></i>
+        </div>
+        <div>
+          <span class="badge bg-danger mb-2">ABOUT ESHOP</span>
+          <h2 class="h3 fw-bold mb-2">A smarter way to find your next car</h2>
+          <p class="mb-0">Eshop brings buyers and sellers together in one place. Browse available vehicles, learn about their condition, and make your next car purchase with confidence.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row g-4 text-center">
+      <div class="col-md-4">
+            <i class="bi bi-patch-check-fill"></i>
+        
+            <h3 class="h4 fw-bold">Transparent Inspection</h3>
+            <p class="mb-0">Inspected, verified, and fully disclosed. See the car's true condition before you buy or sell.</p>
+        </div>
+
+      <div class="col-md-4">
+            <i class="bi bi-bank"></i>
+        
+           
+            <h3 class="h4 fw-bold">Fair Pricing</h3>
+            <p class="mb-0">Priced according to the car's true condition, creating a fair market price deal for both buyers and sellers.</p>
+        </div>
+        <div class="col-md-4">
+          <i class="bi bi-shield-check"></i>
+        <h3 class="h4 fw-bold">Secure Payment</h3>
+            <p class="mb-0">We oversee the transaction and ensure payment is handled safely, giving buyers and sellers complete peace of mind.</p>
+          
+      </div>
+    </div>
+  </section>
+
+  <footer class="bg-sucess bg-gradient text-white mx-3 shadow border rounded">
+    <div class="container-fluid px-4 px-lg-5 py-5">
+      <div class="row  g-1">
+        <div class="col-md-3">
+          <h2 class="h5 fw-bold mb-3 text-success">Help and Support</h2>
+          <ul class="list-unstyled text-dark  mb-0">
+            <li class="mb-2">Monday to Saturday: 8AM – 7PM</li>
+            <li class="mb-2">Sundays: 11AM – 3PM <span class="d-block">Windsor branch only</span></li>
+            <li class="mb-2">Public Holidays: 9AM – 5PM</li>
+            <li>Pre-arranged viewings are available outside business hours.</li>
+          </ul>
+        </div>
+
+        <div class="col-md-2">
+          <h2 class="h5 fw-bold mb-3 text-success">Our Other Lines</h2>
+          <ul class="list-unstyled text-dark mb-0">
+            <li class="mb-2">Safaricom: <a class="text-dark" href="tel:+254709726900">0709 726900</a></li>
+            <li class="mb-2">WhatsApp: <a class="text-dark" href="https://wa.me/254709726900">0709 726900</a></li>
+            <li><a class="link-light" href="mailto:inquiries@peach-technology.com">inquiries@peach-technology.com</a></li>
+          </ul>
+        </div>
+
+        <div class="col-md-3">
+          <h2 class="h5 fw-bold mb-3 text-success">Peach Process</h2>
+          <ul class="list-unstyled text-dark  mb-0">
+            <li class="mb-2">Buying Process</li>
+            <li class="mb-2">Selling Process</li>
+            <li class="mb-2">Financing</li>
+            <li>Inspection</li>
+          </ul>
+        </div>
+
+        <div class="col-md-3">
+          <h2 class="h5 fw-bold mb-3 text-success">Explore Peach</h2>
+          <h3 class="h6 fw-semibold text-dark">Resources</h3>
+          <ul class="list-unstyled text-dark  mb-3">
+            <li class="mb-1">Blog</li>
+            <li class="mb-1">Wishlist</li>
+            <li class="mb-1">FAQs</li>
+            
+            <li>Glossary</li>
+          </ul>
+         
+        </div>
+
+        <div class="col-md-1">
+          <h2 class="h5 fw-bold mb-3 text-success">Our Locations</h2>
+          <ul class="list-unstyled text-dark mb-3">
+            <li class="mb-2"><strong class="text-dark">Peach Cars – Lavington</strong><br>James Gichuru Road, Lavington, Nairobi</li>
+            <li class="mb-2"><strong class="text-dark">Peach Cars – Lang'ata</strong><br>Next to House of Grace</li>
+            
+          </ul>
+          
+        </div>
+       
+      </div>
+    </div>
+  </footer>
+  
+<style>
+  .htmx-indicator {
+    display: none;
+  }
+
+  .htmx-request.htmx-indicator {
+    display: inline-flex;
+  }
+
+  .product-description {
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+  }
+    body{
+      background-color:#f2f4f5;
+    
+      font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  }
+</style>
+
+{% endblock %}

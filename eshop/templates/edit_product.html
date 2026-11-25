@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Product{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center mt-3">
+        <div class="col-md-6 card shadow p-4">
+            <h2 class="text-center">Edit {{ product.name }}</h2>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <div class="d-flex gap-2">
+                    <button class="btn btn-warning" type="submit">Save Changes</button>
+                    <a class="btn btn-outline-secondary" href="{% url 'product' %}">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

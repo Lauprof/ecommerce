@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Register{% endblock %}
+
+{% block page_styles %}
+<style>
+    body.login-page {
+        background: linear-gradient(180deg, #fff4dc 0%, #fff 100%);
+    }
+
+    .login-card {
+        width: 100%;
+        max-width: 520px;
+    }
+
+    .register-shell {
+        min-height: calc(100vh - 88px);
+    }
+</style>
+{% endblock %}
+
+{% block body_class %}login-page{% endblock %}
+
+{% block content %}
+
+<div class="register-shell container-fluid d-flex align-items-center justify-content-center flex-column p-3 fs-6">
+
+    <div class="login-card shadow border rounded bg-white p-4 p-md-5">
+
+    <p class="h4 fw-bold text-center mb-2">Eshop AutoMobile Experts</p>
+    <p class="text-center text-muted mb-4">Register</p>
+
+    {% if messages %}
+        {% for message in messages %}
+        <div class="alert {% if message.tags == 'error' %}alert-danger{% else %}alert-{{ message.tags }}{% endif %}" role="alert">
+            {{ message }}
+        </div>
+        {% endfor %}
+    {% endif %}
+
+    <form class="form" method="post">
+        {% csrf_token %}
+        <h2 class="h5 text-center fw-bold mb-4">Register to continue</h2>
+        {{ form.as_p }}
+        <button class="btn btn-secondary btn-lg container-fluid rounded mb-3" type="submit">Register</button>
+
+       <div class="text-center mb-3">
+            <a href="{% url 'login' %}" class="small text-danger text-decoration-none">
+                <i class="bi bi-key me-1" aria-hidden="true"></i>Got an account? Login
+            </a>
+        </div>
+
+    </form>
+
+    </div>
+
+</div>
+
+{% endblock %}
