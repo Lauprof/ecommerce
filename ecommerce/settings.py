@@ -9,8 +9,9 @@ https://docs.djangoproject.com/en/6.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.1/ref/settings/
 """
-
+import os 
 from pathlib import Path
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -37,7 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'eshop'
+    'eshop',
+    'cloudinary',
+    'cloudinary_storage'
 ]
 
 MIDDLEWARE = [
@@ -48,6 +51,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware'
 ]
 
 ROOT_URLCONF = 'ecommerce.urls'
@@ -116,8 +120,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.1/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = BASE_DIR/'staticfiles'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+
 
 # Email
 # https://docs.djangoproject.com/en/6.1/topics/email/#topic-email-configuration
@@ -127,3 +134,18 @@ MAILERS = {
         'BACKEND': 'django.core.mail.backends.console.EmailBackend',
     },
 }
+
+CLOUDINARY_STORAGE={
+    'CLOUD_NAME':config('CLOUD_NAME'),
+    'API_KEY':config('API_KEY'),
+    'API_SECRET':config('API_SECRET')
+}
+
+STORAGES = {
+    "default": {
+        "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+    },
+} 
